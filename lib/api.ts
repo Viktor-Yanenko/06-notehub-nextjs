@@ -50,3 +50,5 @@ export async function createNote(noteData: NewNoteData) {
     })
     return response.data;
 }
+
+export async function fetchNoteById(){}
