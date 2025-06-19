@@ -5,6 +5,7 @@
 }
 
 .formGroup{
+    margin-bottom: 8px;
     display: flex;
     flex-direction: column;
     font-size: 14px;

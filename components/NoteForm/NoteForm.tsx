@@ -117,7 +117,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
                     <button type='button' className={css.cancelButton} onClick={onClose}>
                         Cancel
                     </button>
-                    <button type='submit' className={css.submitButton}>
+                    <button type='submit' className={css.sumbitButton}>
                         {isPending ? 'Creating new note...' : 'Create note'}
                     </button>
                 </div>
