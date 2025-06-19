@@ -51,7 +51,7 @@ export async function createNote(noteData: NewNoteData) {
     return response.data;
 }
 
-export async function fetchNoteById(id: number): Promise<Note> {
+export async function fetchNoteById(id: string): Promise<Note> {
     const response = await axios.get<Note>(`${API_URL}/${id}`, {
         headers: HEADERS,
     });
