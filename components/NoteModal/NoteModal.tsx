@@ -3,13 +3,15 @@
 import { createPortal } from 'react-dom'
 import css from './NoteModal.module.css'
 import NoteForm from '../NoteForm/NoteForm'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface NoteModalProps {
     onClose: () => void;
 }
 
 export default function NoteModal({ onClose }: NoteModalProps) {
+
+    const [mount, setMount] = useState(false);
     
     const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.target === event.currentTarget) {
@@ -18,6 +20,8 @@ export default function NoteModal({ onClose }: NoteModalProps) {
     }
 
     useEffect(() => {
+        setMount(true);
+
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === 'Escape') {
                 onClose();
@@ -30,6 +34,8 @@ export default function NoteModal({ onClose }: NoteModalProps) {
             document.body.style.overflow = '';
         }
     }, [onClose])
+
+    if (!mount) return null;
 
     return createPortal(
         <div
