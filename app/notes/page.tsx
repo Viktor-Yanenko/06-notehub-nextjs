@@ -1,6 +1,8 @@
 import { QueryClient, HydrationBoundary, dehydrate } from "@tanstack/react-query";
-import NotesClient from './Notes.client'
 import { fetchNotes } from "../../lib/api";
+import dynamic from "next/dynamic";
+
+const NotesClient = dynamic(() => import('./Notes.client'), { ssr: false });
 
 export default async function NotesPage() {
     const queryClient = new QueryClient()

@@ -9,8 +9,6 @@ import css from './NotesPage.module.css'
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import NoteModal from "../../components/NoteModal/NoteModal";
 import { useDebounce } from "use-debounce";
-// import Loader from "../Loader/Loader";
-// import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 
 export default function App() {
@@ -45,8 +43,6 @@ export default function App() {
                 />}
                 <button className={css.button} onClick={openModal}>Create note +</button>
             </header>
-            {/* {isLoading && <Loader />}
-            {isError && <ErrorMessage />} */}
             {data?.notes
                 ? (<NoteList notes={data?.notes} />)
                 : (!isLoading && !isError && <p className={css.empty}>No notes found</p>) }
