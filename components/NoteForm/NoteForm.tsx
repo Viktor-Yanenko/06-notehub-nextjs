@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNote } from '../../lib/api';
 import type { NewNoteData, NoteTag } from '../../types/note';
 
-const OrderSchema = Yup.object().shape({
+const NoteSchema = Yup.object().shape({
     title: Yup.string()
         .min(3, 'Title is too short!')
         .max(50, 'Title is too long!')
@@ -58,7 +58,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
     return (
         <Formik
             initialValues={initialValues}
-            validationSchema={OrderSchema}
+            validationSchema={NoteSchema}
             onSubmit={handleSubmit}>
             <Form>
                 <div className={css.formGroup}>
@@ -117,7 +117,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
                     <button type='button' className={css.cancelButton} onClick={onClose}>
                         Cancel
                     </button>
-                    <button type='submit' className={css.sumbitButton}>
+                    <button type='submit' className={css.submitButton}>
                         {isPending ? 'Creating new note...' : 'Create note'}
                     </button>
                 </div>

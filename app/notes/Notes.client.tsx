@@ -9,9 +9,14 @@ import css from './NotesPage.module.css'
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import NoteModal from "../../components/NoteModal/NoteModal";
 import { useDebounce } from "use-debounce";
+import { type Note } from "../../types/note";
 
+interface NotesClientProps {
+    initialNotes: Note[];
+    initialTotalPages: number;
+}
 
-export default function App() {
+export default function App({initialNotes, initialTotalPages}: NotesClientProps) {
     const [currentPage, setCurrentPage] = useState(1);
     const [modal, setModal] = useState(false);
 
@@ -22,6 +27,12 @@ export default function App() {
         queryKey: ['notes', debouncedQuery, currentPage],
         queryFn: () => fetchNotes(debouncedQuery, currentPage),
         placeholderData: keepPreviousData,
+        initialData: debouncedQuery === '' && currentPage === 1 ? {
+            notes: initialNotes,
+            page: 1,
+            totalPages: initialTotalPages,
+        } 
+            : undefined,
     })
 
     const totalPages = data?.totalPages ?? 0;

@@ -5,11 +5,12 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchNoteById } from '../../../lib/api';
 
 export default function NoteDetailsClient() {
-    const {id} = useParams<{id:string}>()
+    const { id } = useParams<{ id: string }>()
+    const noteId = Number(id)
 
     const { data: note, isLoading, isError } = useQuery({
-        queryKey: ['note', id],
-        queryFn: () => fetchNoteById(id),
+        queryKey: ['note', noteId],
+        queryFn: () => fetchNoteById(noteId),
         refetchOnMount: false,
     })
 
@@ -24,7 +25,7 @@ export default function NoteDetailsClient() {
                     <button className={css.editBtn}>Edit note</button>
                 </div>
                 <p className={css.content}>{note.content}</p>
-                {/* <p className={css.date}>Created date</p> */}
+                <p className={css.date}>{new Date(note.createdAt).toLocaleDateString('uk-UA')}</p>
             </div>
         </div>
     )

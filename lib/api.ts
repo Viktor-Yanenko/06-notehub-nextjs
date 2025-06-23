@@ -6,7 +6,7 @@ const API_URL = 'https://notehub-public.goit.study/api/notes';
 
 const HEADERS = {
     Accept: 'application/json',
-    Authorization: `Bearer: ${API_KEY}`,
+    Authorization: `Bearer ${API_KEY}`,
 }
 
 interface NotesHttpResponse{
@@ -44,14 +44,14 @@ export async function deleteNote(noteId: number): Promise<Note> {
     return response.data;
 }
 
-export async function createNote(noteData: NewNoteData) {
+export async function createNote(noteData: NewNoteData): Promise<Note> {
     const response = await axios.post<Note>(API_URL, noteData, {
         headers: HEADERS,
     })
     return response.data;
 }
 
-export async function fetchNoteById(id: string): Promise<Note> {
+export async function fetchNoteById(id: number): Promise<Note> {
     const response = await axios.get<Note>(`${API_URL}/${id}`, {
         headers: HEADERS,
     });
